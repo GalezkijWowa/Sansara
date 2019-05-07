@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SansaraCW", "SansaraCW\SansaraCW.csproj", "{CFB92561-05F2-483E-9AA3-755ADE7C307B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SansaraCW", "SansaraCW\SansaraCW.csproj", "{CFB92561-05F2-483E-9AA3-755ADE7C307B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sansara.Database", "Sansara.Database\Sansara.Database.csproj", "{03E551DC-E21E-42EE-B065-9BDBA1874C24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sansara.Database", "Sansara.Database\Sansara.Database.csproj", "{03E551DC-E21E-42EE-B065-9BDBA1874C24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sansara.BL", "Sansara.BL\Sansara.BL.csproj", "{5D056CB6-A23A-4707-A2FD-856A28C9E7B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{03E551DC-E21E-42EE-B065-9BDBA1874C24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03E551DC-E21E-42EE-B065-9BDBA1874C24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03E551DC-E21E-42EE-B065-9BDBA1874C24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D056CB6-A23A-4707-A2FD-856A28C9E7B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D056CB6-A23A-4707-A2FD-856A28C9E7B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D056CB6-A23A-4707-A2FD-856A28C9E7B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D056CB6-A23A-4707-A2FD-856A28C9E7B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
