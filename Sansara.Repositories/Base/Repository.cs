@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Sansara.Repositories.Base
 {
-    public class Repository<T, TKey> : IRepository<T, TKey> where T : BaseEntity<TKey>, new() where TKey : struct
+    public class Repository<T> : IRepository<T> where T : BaseEntity, new()
     {
         protected DbSet<T> Set
         {
@@ -28,7 +28,7 @@ namespace Sansara.Repositories.Base
 
         #region Sync (Delete, DeleteAll, Add, AddAll, Update, UpdateAll)
 
-        public T Get(TKey id)
+        public T Get(string id)
         {
             return Set.AsNoTracking().SingleOrDefault(Equals(x => x.Id, id));
         }
@@ -48,14 +48,14 @@ namespace Sansara.Repositories.Base
             return Set.AsNoTracking().Where(predicate).ToList();
         }
 
-        public virtual void Delete(TKey id)
+        public virtual void Delete(string id)
         {
             var entity = new T { Id = id };
             Set.Attach(entity);
             Set.Remove(entity);
         }
 
-        public virtual void DeleteAll(IEnumerable<TKey> ids)
+        public virtual void DeleteAll(IEnumerable<string> ids)
         {
             var entities = ids.Select(id => new T { Id = id }).Select(entity => Set.Attach(entity).Entity).ToList();
             var t = entities.Select(e => (T)e);
@@ -123,7 +123,7 @@ namespace Sansara.Repositories.Base
             return await Set.AsNoTracking().CountAsync(predicate).ConfigureAwait(false);
         }
 
-        public virtual async Task<bool> ExistAsync(TKey id)
+        public virtual async Task<bool> ExistAsync(string id)
         {
             return await Set.AsNoTracking().AnyAsync(Equals(x => x.Id, id)).ConfigureAwait(false);
         }
@@ -133,7 +133,7 @@ namespace Sansara.Repositories.Base
             return await Set.AsNoTracking().AnyAsync(predicate).ConfigureAwait(false);
         }
 
-        public virtual bool Exist(TKey id)
+        public virtual bool Exist(string id)
         {
             return Set.AsNoTracking().Any(Equals(x => x.Id, id));
         }
@@ -143,7 +143,7 @@ namespace Sansara.Repositories.Base
             return Set.AsNoTracking().Any(predicate);
         }
 
-        public virtual async Task<T> GetAsync(TKey id)
+        public virtual async Task<T> GetAsync(string id)
         {
             return await Set.AsNoTracking().SingleOrDefaultAsync(Equals(x => x.Id, id)).ConfigureAwait(false);
         }
@@ -241,10 +241,10 @@ namespace Sansara.Repositories.Base
 
         #region Private methods
         // Equals for generic keys in EF, see http://stackoverflow.com/questions/10402029/ef-object-comparison-with-generic-types 
-        private static Expression<Func<T, bool>> Equals(Expression<Func<T, TKey>> property, TKey value)
+        private static Expression<Func<T, bool>> Equals(Expression<Func<T, string>> property, string value)
         {
             var left = property.Body;
-            var right = Expression.Constant(value, typeof(TKey));
+            var right = Expression.Constant(value, typeof(string));
             return Expression.Lambda<Func<T, bool>>(Expression.Equal(left, right), new[] { property.Parameters.Single() });
         }
         #endregion

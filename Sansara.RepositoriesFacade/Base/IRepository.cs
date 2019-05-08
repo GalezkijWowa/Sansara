@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace Sansara.RepositoriesFacade.Base
 {
-    public interface IRepository<T, in TKey> where T : BaseEntity<TKey>, new() where TKey : struct
+    public interface IRepository<T> where T : BaseEntity, new()
     {
         #region Sync (Delete, DeleteAll, Add, AddAll, Update, UpdateAll)
-        T Get(TKey id);
+        T Get(string id);
 
         T Get(Expression<Func<T, bool>> predicate);
 
@@ -20,9 +20,9 @@ namespace Sansara.RepositoriesFacade.Base
 
         IList<T> GetAll(Expression<Func<T, bool>> predicate);
 
-        void Delete(TKey id);
+        void Delete(string id);
 
-        void DeleteAll(IEnumerable<TKey> ids);
+        void DeleteAll(IEnumerable<string> ids);
 
         void Add(T entity);
 
@@ -44,15 +44,15 @@ namespace Sansara.RepositoriesFacade.Base
 
         Task<int> CountAsync(Expression<Func<T, bool>> predicate);
 
-        bool Exist(TKey id);
+        bool Exist(string id);
 
         bool Exist(Expression<Func<T, bool>> predicate);
 
-        Task<bool> ExistAsync(TKey id);
+        Task<bool> ExistAsync(string id);
 
         Task<bool> ExistAsync(Expression<Func<T, bool>> predicate);
 
-        Task<T> GetAsync(TKey id);
+        Task<T> GetAsync(string id);
 
         Task<T> GetAsync(Expression<Func<T, bool>> predicate);
 

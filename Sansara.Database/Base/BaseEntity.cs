@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Sansara.Database.Base
 {
-    public abstract class BaseEntity<TKey> where TKey : struct
+    public abstract class BaseEntity
     {
-        public abstract TKey Id { get; set; }
+        public abstract string Id { get; set; }
     }
 }
